@@ -5,15 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DataResponce<T> extends BaseResponce {
-    private List<T> data;
-    public DataResponce(boolean succes, String message, List<T> data){
+public class DataResponse<T> extends BaseResponse {
+    private T data;
+    public DataResponse(boolean succes, String message, T data){
         super(succes,message);
         this.data=data;
     }

@@ -25,6 +25,11 @@ public class PublisherService {
     public void update (PublisherEntity data) {
         repo.save(data);
     }
+
+    public void delete (Long id) {
+        repo.deleteById(id);
+    }
+
 }
 
 

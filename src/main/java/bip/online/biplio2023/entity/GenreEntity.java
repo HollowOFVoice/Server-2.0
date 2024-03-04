@@ -13,12 +13,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "genres")
+@Table(name = "genre")
 public class GenreEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-private  Long id;
+    private Long id;
     private String title;
     @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
     private List<BookEntity> books;
