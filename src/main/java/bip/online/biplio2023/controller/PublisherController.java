@@ -23,14 +23,14 @@ public class PublisherController {
     @GetMapping("/all")
     public ResponseEntity<BaseResponse> getAll() {
         return ResponseEntity.ok(
-                new ListResponse<PublisherEntity>(true, "Список акторов", service.findAll()));
+                new ListResponse<PublisherEntity>(true, "Список Издательств", service.findAll()));
     }
 
     @GetMapping
     public ResponseEntity<BaseResponse> by_id(@RequestParam Long id) {
         try {
         return ResponseEntity.ok(
-                new DataResponse<PublisherEntity>(true, "Найден следующий автор", service.findById(id).orElseThrow()));
+                new DataResponse<PublisherEntity>(true, "Найден следующий издатель", service.findById(id).orElseThrow()));
     }catch (RuntimeException e) {
             return ResponseEntity.ok(
                     new BaseResponse(false, e.getMessage()));
@@ -42,7 +42,7 @@ public class PublisherController {
     public ResponseEntity<BaseResponse> save(@RequestBody PublisherEntity publisher) {
         try{
         return ResponseEntity.ok(
-                new DataResponse<PublisherEntity>(true, "Автор сохранен", service.save(publisher)));
+                new DataResponse<PublisherEntity>(true, "Издатель сохранен", service.save(publisher)));
     }catch (RuntimeException e) {
         return ResponseEntity.ok(
                 new BaseResponse(false, e.getMessage()));
@@ -55,7 +55,7 @@ public class PublisherController {
        try{
         service.update(publisher);
         return ResponseEntity.ok(
-                new BaseResponse(true, "Автор сохранен"));
+                new BaseResponse(true, "Издатель сохранен"));
     }catch (RuntimeException e) {
         return ResponseEntity.ok(
                 new BaseResponse(false, e.getMessage()));
@@ -67,7 +67,7 @@ public class PublisherController {
         try {
             service.delete(id);
             return ResponseEntity.ok(
-                    new BaseResponse(true, "Город удален"));
+                    new BaseResponse(true, "Издатель удален"));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(
                     new BaseResponse(false, e.getMessage()));
