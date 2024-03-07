@@ -17,6 +17,7 @@ public class   BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String bookName;
     @NotNull
     @ManyToOne
     @JoinColumn(name ="author_id")
