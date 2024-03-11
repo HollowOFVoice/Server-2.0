@@ -1,5 +1,6 @@
 package bip.online.biplio2023.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class GenreEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @JsonIgnore
     @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
     private List<BookEntity> books;
 }

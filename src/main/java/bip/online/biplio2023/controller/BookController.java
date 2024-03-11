@@ -1,7 +1,7 @@
 package bip.online.biplio2023.controller;
 
 
-import bip.online.biplio2023.entity.AuthorEntity;
+
 import bip.online.biplio2023.entity.BookEntity;
 import bip.online.biplio2023.responce.BaseResponse;
 import bip.online.biplio2023.responce.DataResponse;
@@ -11,6 +11,8 @@ import bip.online.biplio2023.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/books")
@@ -36,6 +38,10 @@ public class BookController {
         }
     }
 
+    @GetMapping("/get")
+    public  ResponseEntity<BaseResponse> getBookname(@RequestParam String bookName){
+        return ResponseEntity.ok(new ListResponse(service.getBookName(bookName)));
+    }
 
     @PostMapping
     public ResponseEntity<BaseResponse> save(@RequestBody BookEntity books) {

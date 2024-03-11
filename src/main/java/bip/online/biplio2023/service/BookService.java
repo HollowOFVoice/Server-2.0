@@ -24,6 +24,9 @@ public class BookService {
         repo.save(data);
     }
 
+    public List<BookEntity>getBookName(String bookName){
+        return repo.findByBookName(bookName);
+    }
     public void delete (Long id) {
         repo.deleteById(id);
     }
