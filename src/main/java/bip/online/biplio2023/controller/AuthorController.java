@@ -69,7 +69,10 @@ public class AuthorController {
                     new BaseResponse(false, e.getMessage()));
         }
     }
-
+    @Operation(
+            summary = "Удалить автора",
+            description = "Позволяет удалить данные об  авторе из базы"
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<BaseResponse> delete(@PathVariable Long id) {
         try {

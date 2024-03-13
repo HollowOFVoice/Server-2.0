@@ -9,23 +9,32 @@ import bip.online.biplio2023.responce.ListResponse;
 
 
 import bip.online.biplio2023.service.CityService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@Tag(name="Город", description="Содержит методы для работы с городом")
 @RestController
 @RequestMapping("api/v1/city")
 @AllArgsConstructor
 public class CityController {
     private final CityService service;
 
+    @Operation(
+            summary = "вывод всех городов",
+            description = "Позволяет выводить все города, что есть в базе"
+    )
     @GetMapping("/all")
     public ResponseEntity<BaseResponse> getAll() {
 
         return ResponseEntity.ok(
                 new ListResponse<CityEntity>(true, "Список городов", service.findAll()));
     }
-
+    @Operation(
+            summary = "Поиск города по id",
+            description = "Позволяет искать город по его id"
+    )
     @GetMapping
     public ResponseEntity<BaseResponse> by_id(@RequestParam Long id) {
         try {
@@ -36,7 +45,10 @@ public class CityController {
                 new BaseResponse(false, e.getMessage()));
     }
 }
-
+    @Operation(
+            summary = "Добавить город",
+            description = "Позволяет добовить новый город в базу"
+    )
     @PostMapping
     public ResponseEntity<BaseResponse> save(@RequestBody CityEntity city) {
         try {
@@ -47,7 +59,10 @@ public class CityController {
                     new BaseResponse(false, e.getMessage()));
         }
     }
-
+    @Operation(
+            summary = "Изменить город",
+            description = "Позволяет редактировать и изменять город"
+    )
     @PutMapping
     public ResponseEntity<BaseResponse> update(@RequestBody CityEntity city) {
         try {
@@ -59,6 +74,10 @@ public class CityController {
                 new BaseResponse(false, e.getMessage()));
     }
 }
+    @Operation(
+            summary = "Удалить город",
+            description = "Позволяет удалить город из базы"
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<BaseResponse> delete(@PathVariable Long id) {
         try {
